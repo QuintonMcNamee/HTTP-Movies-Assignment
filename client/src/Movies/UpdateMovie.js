@@ -44,7 +44,7 @@ const UpdateMovie = props => {
   };
 
   return (
-    <div>
+    <div className='updateMovieClass'>
       <h2>Update Movie</h2>
       <form onSubmit={handleSubmit}>
         <input
