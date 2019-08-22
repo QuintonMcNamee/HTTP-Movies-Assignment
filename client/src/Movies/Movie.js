@@ -5,7 +5,8 @@ export default class Movie extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      movie: null
+      movie: null,
+      props: props
     };
   }
 
@@ -31,16 +32,24 @@ export default class Movie extends React.Component {
     addToSavedList(this.state.movie);
   };
 
+  updateMovie = (e, movie) => {
+    e.preventDefault();
+    this.props.history.push(`/update-movie/${movie.id}`)
+  }
+
   render() {
     if (!this.state.movie) {
       return <div>Loading movie information...</div>;
     }
-
+    console.log(this.props.savedList[0]);
     return (
       <div className="save-wrapper">
         <MovieCard movie={this.state.movie} />
         <div className="save-button" onClick={this.saveMovie}>
           Save
+        </div>
+        <div className="update-button" onClick={e => this.updateMovie(e, this.props.savedList[0])}>
+          Update
         </div>
       </div>
     );
